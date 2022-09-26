@@ -1,10 +1,6 @@
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include "Xml.h"
 using namespace yazi::xml;
-
-#include <sys/time.h>
 
 int main()
 {
