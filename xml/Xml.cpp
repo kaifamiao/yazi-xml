@@ -296,7 +296,7 @@ string Xml::str() const
 {
     if (m_name == nullptr)
     {
-        return "";
+        throw new std::logic_error("element name is empty");
     }
     ostringstream os;
     os << "<";
