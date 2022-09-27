@@ -72,7 +72,7 @@ bool Parser::parse_declaration()
         return false;
     }
     m_idx += 5;
-    int pos = m_str.find("?>", m_idx);
+    size_t pos = m_str.find("?>", m_idx);
     if (pos == std::string::npos)
     {
         return false;
@@ -88,7 +88,7 @@ bool Parser::parse_comment()
         return false;
     }
     m_idx += 4;
-    int pos = m_str.find("-->", m_idx);
+    size_t pos = m_str.find("-->", m_idx);
     if (pos == std::string::npos)
     {
         return false;
@@ -134,7 +134,7 @@ Xml Parser::parse_element()
             {
                 // find the end tag
                 string end_tag = "</" + name + ">";
-                int pos = m_str.find(end_tag, m_idx);
+                size_t pos = m_str.find(end_tag, m_idx);
                 if (pos == std::string::npos)
                 {
                     throw std::logic_error("xml element " + name + " end tag not found");
