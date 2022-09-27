@@ -2,6 +2,7 @@
 #include "Parser.h"
 using namespace yazi::xml;
 
+#include <fstream>
 #include <sstream>
 using namespace std;
 
@@ -331,6 +332,18 @@ bool Xml::load(const string & filename)
         return false;
     }
     *this = p.parse();
+    return true;
+}
+
+bool Xml::save(const string & filename)
+{
+    ofstream fout(filename);
+    if (fout.fail())
+    {
+        return false;
+    }
+    fout << str();
+    fout.close();
     return true;
 }
 

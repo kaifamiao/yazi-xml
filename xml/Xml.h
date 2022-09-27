@@ -105,6 +105,7 @@ public:
     }
 
     bool load(const string & filename);
+    bool save(const string & filename);
     bool parse(const string & str);
 
 private:
