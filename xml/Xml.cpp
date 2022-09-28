@@ -135,6 +135,10 @@ Xml::Xml(const Xml & other)
 
 string Xml::name() const
 {
+    if (m_name == nullptr)
+    {
+        return "";
+    }
     return *m_name;
 }
 
@@ -149,6 +153,10 @@ void Xml::name(const string & name)
 
 string Xml::text() const
 {
+    if (m_text == nullptr)
+    {
+        return "";
+    }
     return *m_text;
 }
 
@@ -217,6 +225,28 @@ Xml & Xml::operator [] (int index)
         }
     }
     return (*m_child)[index];
+}
+
+Xml & Xml::operator [] (const char * name)
+{
+    return (*this)[string(name)];
+}
+
+Xml & Xml::operator [] (const string & name)
+{
+    if (m_child == nullptr)
+    {
+        m_child = new std::vector<Xml>();
+    }
+    for (auto it = m_child->begin(); it != m_child->end(); it++)
+    {
+        if (it->name() == name)
+        {
+            return *it;
+        }
+    }
+    m_child->push_back(Xml(name));
+    return m_child->back();
 }
 
 void Xml::remove(int index)

@@ -59,25 +59,8 @@ public:
 
     void append(const Xml & child);
     Xml & operator [] (int index);
-
-    typedef std::vector<Xml> Child;
-    Child operator [] (const char * name)
-    {
-        return (*this)[string(name)];
-    }
-
-    Child operator [] (const string & name)
-    {
-        std::vector<Xml> child;
-        for (auto it = m_child->begin(); it != m_child->end(); it++)
-        {
-            if (it->name() == name)
-            {
-                child.push_back(*it);
-            }
-        }
-        return child;
-    }
+    Xml & operator [] (const char * name);
+    Xml & operator [] (const string & name);
 
     void remove(int index);
     void remove(const char * name);
