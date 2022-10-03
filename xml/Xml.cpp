@@ -208,13 +208,13 @@ void Xml::append(const Xml & child)
 
 Xml & Xml::operator [] (int index)
 {
-    if (m_child == nullptr)
-    {
-        m_child = new std::vector<Xml>();
-    }
     if (index < 0)
     {
         throw std::logic_error("index < 0");
+    }
+    if (m_child == nullptr)
+    {
+        m_child = new std::vector<Xml>();
     }
     int size = m_child->size();
     if (index >= size)
