@@ -201,7 +201,7 @@ void Xml::append(const Xml & child)
 {
     if (m_child == nullptr)
     {
-        m_child = new std::vector<Xml>();
+        m_child = new std::list<Xml>();
     }
     m_child->push_back(child);
 }
@@ -214,17 +214,26 @@ Xml & Xml::operator [] (int index)
     }
     if (m_child == nullptr)
     {
-        m_child = new std::vector<Xml>();
+        m_child = new std::list<Xml>();
     }
     int size = m_child->size();
+    if (index >= 0 && index < size)
+    {
+        auto it = m_child->begin();
+        for (int i = 0; i < index; i++)
+        {
+            it++;
+        }
+        return *it;
+    }
     if (index >= size)
     {
-        for (int i = size; i <= index; i++)
+        for (int i = size; i < index; i++)
         {
             m_child->push_back(Xml());
         }
     }
-    return (*m_child)[index];
+    return m_child->back();
 }
 
 Xml & Xml::operator [] (const char * name)
@@ -236,7 +245,7 @@ Xml & Xml::operator [] (const string & name)
 {
     if (m_child == nullptr)
     {
-        m_child = new std::vector<Xml>();
+        m_child = new std::list<Xml>();
     }
     for (auto it = m_child->begin(); it != m_child->end(); it++)
     {
@@ -260,8 +269,13 @@ void Xml::remove(int index)
     {
         return;
     }
-    m_child->at(index).clear();
-    m_child->erase(m_child->begin() + index);
+    auto it = m_child->begin();
+    for (int i = 0; i < index; i++)
+    {
+        it++;
+    }
+    it->clear();
+    m_child->erase(it);
 }
 
 void Xml::remove(const char * name)

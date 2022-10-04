@@ -2,7 +2,7 @@
 
 #include <string>
 #include <map>
-#include <vector>
+#include <list>
 using namespace std;
 
 namespace yazi {
@@ -72,7 +72,7 @@ public:
 
     string str() const;
 
-    typedef std::vector<Xml>::iterator iterator;
+    typedef std::list<Xml>::iterator iterator;
     iterator begin()
     {
         return m_child->begin();
@@ -95,7 +95,7 @@ private:
     string * m_name;
     string * m_text;
     std::map<string, Value> * m_attrs;
-    std::vector<Xml> * m_child;
+    std::list<Xml> * m_child;
 };
 }
 }
