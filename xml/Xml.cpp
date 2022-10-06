@@ -210,7 +210,7 @@ Xml & Xml::operator [] (int index)
 {
     if (index < 0)
     {
-        throw std::logic_error("index < 0");
+        throw std::logic_error("index less than zero");
     }
     if (m_child == nullptr)
     {
@@ -340,7 +340,7 @@ string Xml::str() const
 {
     if (m_name == nullptr)
     {
-        throw new std::logic_error("element name is empty");
+        return "";
     }
     ostringstream os;
     os << "<";
