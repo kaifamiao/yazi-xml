@@ -46,7 +46,7 @@ Xml Parser::parse()
     {
         if (!parse_declaration())
         {
-            throw new std::logic_error("parse declaration error");
+            throw std::logic_error("parse declaration error");
         }
     }
     skip_white_space();
@@ -54,7 +54,7 @@ Xml Parser::parse()
     {
         if (!parse_comment())
         {
-            throw new std::logic_error("parse comment error");
+            throw std::logic_error("parse comment error");
         }
         skip_white_space();
     }
@@ -62,7 +62,7 @@ Xml Parser::parse()
     {
         return parse_element();
     }
-    throw new std::logic_error("parse element error");
+    throw std::logic_error("parse element error");
 }
 
 bool Parser::parse_declaration()
@@ -166,6 +166,7 @@ Xml Parser::parse_element()
                 throw std::logic_error("xml element attr is error" + key);
             }
             m_idx++;
+            skip_white_space();
             string val = parse_element_attr_val();
             elem.attr(key, val);
         }
