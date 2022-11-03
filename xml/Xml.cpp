@@ -214,26 +214,19 @@ Xml & Xml::operator [] (int index)
     }
     if (m_child == nullptr)
     {
-        m_child = new std::list<Xml>();
+        throw std::logic_error("child is not exists");
     }
     int size = m_child->size();
-    if (index >= 0 && index < size)
-    {
-        auto it = m_child->begin();
-        for (int i = 0; i < index; i++)
-        {
-            it++;
-        }
-        return *it;
-    }
     if (index >= size)
     {
-        for (int i = size; i < index; i++)
-        {
-            m_child->push_back(Xml());
-        }
+        throw std::logic_error("out of range");
     }
-    return m_child->back();
+    auto it = m_child->begin();
+    for (int i = 0; i < index; i++)
+    {
+        it++;
+    }
+    return *it;
 }
 
 Xml & Xml::operator [] (const char * name)

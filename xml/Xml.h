@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <list>
+#include <ostream>
 using namespace std;
 
 namespace yazi {
@@ -90,6 +91,12 @@ public:
     bool load(const string & filename);
     bool save(const string & filename);
     bool parse(const string & str);
+
+    friend ostream & operator << (ostream & os, const Xml & xml)
+    {
+        os << xml.str();
+        return os;
+    }
 
 private:
     string * m_name;

@@ -1,4 +1,8 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
+using namespace std;
+
 #include "Xml.h"
 using namespace yazi::xml;
 
@@ -7,15 +11,19 @@ int main()
     Xml root;
     root.load("./test.xml");
 
-    Xml & student = root["student"];
+    const string & name = root["student"]["name"].text();
+    std::cout << "name=" << name << std::endl;
 
-    int id = student.attr("id");
-    const string & name = student["name"].text();
-    const string & age = student["age"].text();
-    const string & gender = student["gender"].text();
+    int id = root["student"].attr("id");
+    std::cout << "id=" << id << std::endl;
 
-    std::cout << id << "," << age << "," << gender << std::endl;
+    const string & age = root["student"]["age"].text();
+    std::cout << "age=" << age << std::endl;
 
-    root.clear();
+    for (Xml::iterator it = root.begin(); it != root.end(); it++)
+    {
+        std::cout << *it << std::endl;
+    }
+
     return 0;
 }
