@@ -1,5 +1,5 @@
-#include "Xml.h"
-#include "Parser.h"
+#include <xml/Xml.h>
+#include <xml/Parser.h>
 using namespace yazi::xml;
 
 #include <fstream>

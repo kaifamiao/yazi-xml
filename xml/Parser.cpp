@@ -1,10 +1,10 @@
-#include "Parser.h"
+#include <xml/Parser.h>
+using namespace yazi::xml;
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
 using namespace std;
-
-using namespace yazi::xml;
 
 Parser::Parser() : m_str(""), m_idx(0)
 {
